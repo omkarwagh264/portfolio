@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <!-- Self image at the top -->
+    <div class="profile-header">
+      <img src="ph.jpg" alt="Omkar Wagh" class="profile-img" />
+    </div>
+    <nav>
+      <h1>My Portfolio</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About</a> </li>
+        <li><a href="#experience"></a>Experience</li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+       
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      Hi, I'm Omkar Wagh, a web developer. I am currently pursuing an Undergraduate Degree (BE-Information Technology) at Sinhgad College of Engineering, Pune.
+      I have strong programming and communication skills. I have knowledge of C++, Java, Python, and web development technologies like HTML, CSS, JavaScript, React.js, Express.js, Node.js, and MongoDB.
+      I love creating beautiful and functional websites and have implemented several projects in web development.
+    </p>
+  </section>
+
+  <section id="experience" class="experience">
+    <h2>Experience</h2>
+    <p>
+        I have completed my two internship.
+        first internship in web developmnent and another in AIML.
+        I have completed my web development internship Oasis Infobyte Company. in this i had  work on front end and back end .
+        and complted many projects using web development knowledge .
+        and I  have completedd AIML internship in Edunet Foundation .in this internship i had used NLP and Deep Learning anfd python 
+        for implemnting the chat bot project in this internship
+    </p> 
+      
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-item">
+        <h3>Uber Clone (MERN Stack Project)</h3>
+        <p>
+            • Developed a full-stack ride-hailing application inspired by Uber, using React.js for the front end and Node.js
+            with Express.js for the backend.
+            • Implemented real-time ride tracking using Google Maps API and Socket.IO for instant location updates.
+            • Developed a driver and user dashboard with role-based access control and booking history.
+            • Implemented payment gateway integration using Stripe/Razorpay API for seamless digital transactions.
+            • Used MongoDB for storing ride data, user profiles, and transaction history efficiently
+        </p>
+        <a href="https://github.com/omkarwagh264/uber-clone" target="_blank">View Project</a>
+      </div>
+      <div class="project-item">
+        <h3>Chat Bot Using NLP</h3>
+        <p>
+            • Developed an AI-powered chatbot capable of understanding and responding to user queries.
+            • Implemented Natural Language Processing (NLP) techniques using spaCy/NLTK to improve chatbot accuracy.
+            • Trained the chatbot with Deep Learning models to enhance response quality.
+            • Built a user-friendly web interface using Flask/Django for seamless user interaction.
+            • Optimized model performance by fine-tuning hyperparameters and training on large datasets
+        </p>
+        <a href="https://github.com/omkarwagh264/Chatbot-with-NLP" target="_blank">View Project</a>
+      </div>
+      <div class="project-item">
+        <h3>Tic Tac Toe Game</h3>
+        <p>
+            • Developed a fully interactive Tic-Tac-Toe game using HTML, CSS, and JavaScript
+            • Added real-time score tracking and reset functionality, allowing players to start new rounds seamlessly
+            • Utilized DOM manipulation to dynamically update the game board and handle user interactions
+        </p>
+        <a href="https://github.com/omkarwagh264/Tic-Tac-Toe-Game" target="_blank">View Project</a>
+      </div>
+      <div class="project-item">
+        <h3>Spotify Clone Website</h3>
+        <p>
+            • Developed a Spotify-inspired music streaming web app with a responsive and interactive UI using HTML,
+            CSS, and JavaScript.
+            • Implemented a custom audio player with play, pause, next, and previous functionalities using the JavaScript
+            Audio API.
+            • Integrated playlist management allowing users to add, remove, and shuffle songs dynamically
+        </p>
+        <a href="https://github.com/omkarwagh264/Spotify-clone" target="_blank">View Project</a>
+      </div>
+    </div>
+  </section>
+  <section class="certificates">
+    <h2>Certificates</h2>
+    <div class="cert-container">
+      <div class="cert-item">Cloud Computing - AWS</div>
+      <div class="cert-item">Google Analytics</div>
+      <div class="cert-item">Google Advanced Software Engineering</div>
+      <div class="cert-item">Young Professional - TCS</div>
+      <div class="cert-item">Generative AI - Microsoft</div>
+      <div class="cert-item">HTML - IIT Bomaby</div>
+      <div class="cert-item">IBM Data Science - IBM</div>
+    </div>
+  </section>
+  
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <form id="contact-form">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+      <div class="form-group">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  
+  <footer class="footer">
+    <p>&copy; 2024 My Portfolio</p>
+  </footer>
+
+  <!-- AJAX using Fetch API -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Gather form data
+      const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        if(result.success) {
+          alert('Message sent successfully!');
+          this.reset();
+        } else {
+          alert('Error sending message: ' + (result.error || 'Unknown error'));
+        }
+      } catch (error) {
+        alert('Error sending message: ' + error.message);
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
